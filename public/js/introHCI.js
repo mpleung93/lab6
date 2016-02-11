@@ -59,18 +59,24 @@ function randomizeColors(e) {
  */
 function exApi(e) {
 	console.log("User clicked on exApi button");
-	var data = $.get("http://www.panoramio.com/map/get_panoramas.php?set=532693&from=0&to=20&minx=-180&miny=-90&maxx=180&maxy=90&size=medium&mapfilter=true", callbackFunction, 'jsonp');
+	//var data = $.get("https://www.panoramio.com/map/get_panoramas.php?set=532693&from=0&to=20&minx=-180&miny=-90&maxx=180&maxy=90&size=medium&mapfilter=true", callbackFunction, 'jsonp');
+	var data = $.get("https://api.github.com/users/mralexgray/repos", callbackFunction, 'jsonp');
+
 //	console.log(data);
 }
 
 function callbackFunction(result){
 	console.log(result);
-	console.log(result.count);
-	var res = result;
+	var res = result.data;
 	var str = "";
-	str = str + "From the example html   \n \"Count: " + res.count + "   \nhas_more: " + res.has_more + "  \nphotos: " +res.photos  + "\"";
+	str = str + "Object.data[0].archive_url: " +   res[0].archive_url;
 
-	$('h1').html(str);
+	//for (var i = 0; i < res.length; i++)
+//	str = str + "From the example html   \n \"Count: " + res.count + "   \nhas_more: " + res.has_more + "  \nphotos: " +res.photos  + "\"";
+
+	$('.details').html(str);
+	$('#details').html(str);
+
 
 }
 
